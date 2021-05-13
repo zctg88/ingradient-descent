@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ingradient Descent</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    </head>
+    <body>
+        <h1 class="title">Ingradient Descent</h1>
+
+        <h3>Select a file to upload</h2>
+
+        <form method="POST" action = "/" enctype="multipart/form-data">
+            <p><input type="file" name="file" /></p>
+            <p><input type="submit" value="Get ingredients!" /></p>
+        </form>
+
+        {% if filename %}
+        <div>
+            <img src="{{ url_for('display_image', filename=filename) }}" width="300px" height="auto">
+        </div>
+        {% endif %}
+
+        {% with predictions = get_flashed_messages(with_categories=true) %}
+        {% if predictions is not string %}
+        <div class="list-container">
+            {% for model, list in predictions %}
+            <div class="ingredient-list">
+                <h2>{{model}} Model</h2>
+                {% for ingredient in list %}
+                    <p>{{ ingredient }}</p>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+
+        {% endif %}
+        {% endwith %}
+
+    </body>
+    </html>
