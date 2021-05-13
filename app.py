@@ -9,8 +9,11 @@ from fastai.vision.widgets import *
 
 # -------------------------------- Model Code -------------------------------------
 
-path = Path('..')
-vocab = []
+path = Path()
+vocab_1M_v1 = []
+vocab_1M_v3 = []
+vocab_1M_v4 = []
+vocab_5k = []
 
 def get_x(r): 
     # f = r['image']
@@ -24,28 +27,43 @@ def splitter(df):
     valid = df.index[~df['train']].tolist()
     return train,valid
 
-# Grab vocab from file
-with open(path/'vocab.txt') as f:
+# Grab Recipe1M v1 vocab from file
+with open('static/vocab/vocab_r1M_v1.txt') as f:
     for line in f:
-        vocab.append(line.strip())
+        vocab_1M_v1.append(line.strip())
+
+# Grab Recipe1M v3 vocab from file
+with open('static/vocab/vocab_r1M_v3.txt') as f:
+    for line in f:
+        vocab_1M_v3.append(line.strip())
+
+# Grab Recipe1M v4 vocab from file
+with open('static/vocab/vocab_r1M_v4.txt') as f:
+    for line in f:
+        vocab_1M_v4.append(line.strip())
+
+# Grab Recipe1M vocab from file
+with open('static/vocab/vocab_r5k.txt') as f:
+    for line in f:
+        vocab_5k.append(line.strip())
 
 # Method to get list of top predicted ingredients
-def predict_ingredients(model, img_path):
+def predict_ingredients(model, vocab, img_path):
     print(img_path)
     img = PILImage.create(img_path)
-    # display(img.to_thumb(128,128))
     preds = model.predict(img)
     preds_list = preds[-1].tolist()
     pred_idxs = [preds_list.index(elem) for elem in preds_list if(elem > 0.2)]
-    pred_dict = {}
     pred_list = []
     for idx in pred_idxs:
-        pred_dict[idx] = vocab[idx]
         pred_list.append(vocab[idx])
     return pred_list
 
 # Load model
-model_1M = load_learner('v3.pkl')
+model_1M_v1 = load_learner('static/models/r1m_v1.pkl')
+model_1M_v3 = load_learner('static/models/r1m_v3.pkl')
+model_1M_v4 = load_learner('static/models/r1m_v4.pkl')
+model_5k = load_learner('static/models/r5k_v1.pkl')
 
 # ---------------------------------------------------------------------------------
 
@@ -96,8 +114,10 @@ def upload_image():
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         # Send predictions to host
-        flash(predict_ingredients(model_1M, file), 'Recipe1M+')
-        flash(predict_ingredients(model_1M, file), 'Recipes5k')
+        flash(predict_ingredients(model_1M_v1, vocab_1M_v1, file), 'Recipe1M+ v1')
+        flash(predict_ingredients(model_5k, vocab_5k, file), 'Recipes5k')
+        flash(predict_ingredients(model_1M_v3, vocab_1M_v3, file), 'Recipe1M+ v3')
+        flash(predict_ingredients(model_1M_v4, vocab_1M_v4, file), 'Recipe1M+ v4')
         return render_template('index.html', filename=filename)
 
     # If file type isn't allowed
