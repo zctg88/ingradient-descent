@@ -1,7 +1,9 @@
 # Ingradient Descent
 
-The Jupyter notebook containing the variations of our Recipe1M+ dataset can be found 
-[here](https://github.com/sudonotdisturb/ingradient-descent/blob/model-training-files/model_recipe1m.ipynb).
+The models:
+
+- [Recipe1M+ model](https://github.com/sudonotdisturb/ingradient-descent/blob/model-training-files/model_recipe1m.ipynb)
+- [Recipes5k model](https://github.com/sudonotdisturb/ingradient-descent/blob/model-training-files/model_recipes5k.ipynb)
 
 Our technical report on the project and trained models can be found 
 [here](https://github.com/sudonotdisturb/ingradient-descent/blob/model-training-files/report.ipynb).
@@ -17,37 +19,23 @@ together with the notebook. Ensure you upload the following files to the current
 - ingredients_simplified_Recipes5k.txt:: list of common ingredients, curated by the creators of the Recipes5k dataset
 - blacklist.txt :: list of words to filter out of ingredients text
 
+
+
 Datasets we used:
 
 - [Recipe1M+](http://pic2recipe.csail.mit.edu/)
-- [Recipes5k]()
+- [Recipes5k](http://www.ub.edu/cvub/recipes5k/)
 
 
 References:
 
+Howard, J., and S., Gugger. *Deep Learning for Coders with Fastai and Pytorch: AI Applications Without a PhD*. O'Reilly Media, Incorporated, 2020.
+
 Marc Bolaños, Aina Ferrà and Petia Radeva. “Food Ingredients Recognition through Multi-label Learning” In Proceedings of the 3rd International Workshop on Multimedia Assisted Dietary Management (ICIAP Workshops), 2017.
 
-@article{marin2019learning,
-  title = {Recipe1M+: A Dataset for Learning Cross-Modal Embeddings for Cooking Recipes and Food Images},
-  author = {Marin, Javier and Biswas, Aritro and Ofli, Ferda and Hynes, Nicholas and 
-  Salvador, Amaia and Aytar, Yusuf and Weber, Ingmar and Torralba, Antonio},
-  journal = {{IEEE} Trans. Pattern Anal. Mach. Intell.},
-  year = {2019}
-}
+Marin, Javier, Aritro, Biswas, Ferda, Ofli, Nicholas, Hynes, Amaia, Salvador, Yusuf, Aytar, Ingmar, Weber, and Antonio, Torralba. "Recipe1M+: A Dataset for Learning Cross-Modal Embeddings for Cooking Recipes and Food Images". IEEE Trans. Pattern Anal. Mach. Intell. (2019).
 
-@inproceedings{salvador2017learning,
-  title={Learning Cross-modal Embeddings for Cooking Recipes and Food Images},
-  author={Salvador, Amaia and Hynes, Nicholas and Aytar, Yusuf and Marin, Javier and 
-          Ofli, Ferda and Weber, Ingmar and Torralba, Antonio},
-  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
-  year={2017}
-}
+Salvador, Amaia, Nicholas, Hynes, Yusuf, Aytar, Javier, Marin, Ferda, Ofli, Ingmar, Weber, and Antonio, Torralba. "Learning Cross-modal Embeddings for Cooking Recipes and Food Images.". In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2017.
 
-@book{howard2020deep,
-title={Deep Learning for Coders with Fastai and Pytorch: AI Applications Without a PhD},
-author={Howard, J. and Gugger, S.},
-isbn={9781492045526},
-url={https://books.google.no/books?id=xd6LxgEACAAJ},
-year={2020},
-publisher={O'Reilly Media, Incorporated}
-}
+
+
