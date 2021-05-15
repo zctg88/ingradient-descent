@@ -1,0 +1,3 @@
+This directory contains the images uploaded to the Flask app via the "Upload" button.
+
+These images are not automatically deleted.
